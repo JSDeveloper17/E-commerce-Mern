@@ -24,7 +24,7 @@ const userSchema = new Schema({
         trim:true,
     },
     role:{
-        type:Numver,
+        type:Number,
         default:0
     }
 }, {timestamps:true, versionKey:false})

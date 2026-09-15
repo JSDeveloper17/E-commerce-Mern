@@ -11,6 +11,8 @@ const authRouter = require("./routes/auth.route");
 //middleware
 
 app.use(morgan("dev"))
+app.use(express.json())
+
 app.use("/", authRouter)
 
 async function Bootstarp() {
