@@ -4,12 +4,14 @@ const app = express()
 const dotenv = require("dotenv")
 dotenv.config()
 
-
 const mongoose = require("mongoose");
+const PORT = process.env.PORT || 5000;
+const morgan = require("morgan")
 const authRouter = require("./routes/auth.route");
- const PORT = process.env.PORT || 5000;
+//middleware
 
-app.use("/users", authRouter)
+app.use(morgan("dev"))
+app.use("/", authRouter)
 
 async function Bootstarp() {
     try{

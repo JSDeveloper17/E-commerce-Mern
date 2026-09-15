@@ -1,8 +1,7 @@
-const express = require('express')
+const express = require('express');
+const userRegister = require('../controller/register');
 const authRouter = express.Router()
 
-authRouter.get("/users",(req,res)=>{
-    res.json("Hello express")
-})
+authRouter.get("/register", userRegister)
 
 module.exports = authRouter
