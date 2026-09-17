@@ -4,6 +4,8 @@ const userRegister = require('../controller/register');
 const { StatusCodes } = require('http-status-codes');
 const createUserValidator = require('../validators/registerValidator');
 const loginValidator = require('../validators/loginValidator');
+const userLogin = require('../controller/login');
+const authenticateToken = require('../middleware/authenticateToken');
 const authRouter = express.Router()
 
 authRouter.post("/register", createUserValidator, (req,res)=>{
@@ -17,10 +19,16 @@ authRouter.post("/register", createUserValidator, (req,res)=>{
 
 authRouter.post("/login", loginValidator, (req, res)=>{
     const result = validationResult(req);
-    if(result.isEmpty()){}
+    if(result.isEmpty()){
+        return userLogin(req,res)
+    }
     else{
         res.status(StatusCodes.BAD_REQUEST).json(result.array())
     }
+})
+
+authRouter.get("/secret", authenticateToken, (req,res)=>{
+    res.json("Lawdw")
 })
 
 module.exports = authRouter

@@ -1,6 +1,8 @@
 const {StatusCodes} = require("http-status-codes")
 const Users = require("../schema/userSchema");
 const { hashedPassword } = require("../helper/hashPassword");
+const getUserByEmail = require("../helper/getUserByEmail");
+const generateToken = require("../helper/generateToken");
 
 
 async function userRegister(req,res){
@@ -9,7 +11,7 @@ async function userRegister(req,res){
     console.log(req.body)
 
     try{
-        const existingUser = await Users.findOne({email: req.body.email})
+        const existingUser = await getUserByEmail(req.body.email);
         if(existingUser){
             res.status(StatusCodes.BAD_REQUEST).json({
                 message:"User already exist with given email address"
@@ -23,8 +25,13 @@ async function userRegister(req,res){
         })
 
         await newUser.save()
+        const token = generateToken(newUser)
 
-        return res.status(StatusCodes.CREATED).json(newUser)
+        return res.status(StatusCodes.CREATED).json({
+            token: token,
+            email:newUser.email,
+            name : newUser.name 
+        })
     }
     catch(error){
         console.log(error);
