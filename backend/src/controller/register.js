@@ -9,6 +9,12 @@ async function userRegister(req,res){
     console.log(req.body)
 
     try{
+        const existingUser = await Users.findOne({email: req.body.email})
+        if(existingUser){
+            res.status(StatusCodes.BAD_REQUEST).json({
+                message:"User already exist with given email address"
+            })
+        }
         const hashUserPassword = await hashedPassword(req.body.password)
         const newUser = new Users({
             name:req.body.name,
