@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const slugify = require("slugify")
-const Category = require("../schema/catrgorySchema");
+const Category = require("../../schema/catrgorySchema");
 
 async function addCategory(req,res) {
     console.log("Request Method : ", req.method);
