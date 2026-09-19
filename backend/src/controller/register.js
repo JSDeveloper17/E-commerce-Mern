@@ -13,7 +13,7 @@ async function userRegister(req,res){
     try{
         const existingUser = await getUserByEmail(req.body.email);
         if(existingUser){
-            res.status(StatusCodes.BAD_REQUEST).json({
+            res.status(StatusCodes.CONFLICT).json({
                 message:"User already exist with given email address"
             })
         }
