@@ -6,6 +6,7 @@ const createUserValidator = require('../validators/registerValidator');
 const loginValidator = require('../validators/loginValidator');
 const userLogin = require('../controller/login');
 const authenticateToken = require('../middleware/authenticateToken');
+const isAdmin = require('../middleware/isAdmin');
 const authRouter = express.Router()
 
 authRouter.post("/register", createUserValidator, (req,res)=>{
@@ -27,7 +28,7 @@ authRouter.post("/login", loginValidator, (req, res)=>{
     }
 })
 
-authRouter.get("/secret", authenticateToken, (req,res)=>{
+authRouter.get("/secret", [authenticateToken,isAdmin],  (req,res)=>{
     res.json("Lawdw")
 })
 

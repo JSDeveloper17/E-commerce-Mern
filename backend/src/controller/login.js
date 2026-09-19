@@ -20,6 +20,7 @@ async function userLogin(req,res) {
         }
         const token = generateToken(user)
         res.status(StatusCodes.OK).json({
+            id: user._id,
             token: token,
             email: user.email,
             name: user.name,
