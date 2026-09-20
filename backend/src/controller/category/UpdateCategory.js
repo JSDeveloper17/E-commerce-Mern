@@ -1,4 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
+const slugify = require("slugify")
 const Category = require("../../schema/catrgorySchema");
 
 async function UpdateCategory(req,res) {
@@ -7,8 +8,22 @@ async function UpdateCategory(req,res) {
     console.log(req.body)
 
     try{
-        const findCategory = await Category.findById(req.params.id)
-        res.json(findCategory)
+        const findCategory = await Category.findByIdAndUpdate(req.params.id,{
+            name:req.body.name,
+            slug:slugify(req.body.name)
+        },{
+            new:true
+        })
+
+        if(!findCategory){
+            res.status(StatusCodes.NOT_FOUND).json({
+                message:"Category not found"
+            })
+        }
+        res.status(StatusCodes.OK).json({
+            message:"success",
+            findCategory:findCategory
+        })
     }
     catch(err){
         console.log(err)
