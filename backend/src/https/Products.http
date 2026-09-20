@@ -1,0 +1,7 @@
+POST http://localhost:4000/products
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWE5Nzc3NzQ1NzkzYzJjNTNjZDYxMzciLCJlbWFpbCI6InBhbmR5YUBnbWFpbC5jb20iLCJyb2xlIjoxLCJpYXQiOjE3ODk4MTUzNzcsImV4cCI6MTc4OTkwMTc3N30.YQdzosULT8SCAk1wun_GNcmGNbt7dbLXXJy67SU185M
+Content-Type:application/json
+{
+    "name":"Node Js",
+    "desciption":"Backend Environment"
+}
