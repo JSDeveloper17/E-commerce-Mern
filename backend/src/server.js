@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 const morgan = require("morgan")
 const authRouter = require("./routes/auth.route");
 const categoryRouter = require("./routes/category.route");
+const productRouter = require("./routes/product.route");
 //middleware
 
 app.use(morgan("dev"))
@@ -16,6 +17,7 @@ app.use(express.json())
 
 app.use("/", authRouter)
 app.use("/", categoryRouter)
+app.use("/", productRouter)
 
 async function Bootstarp() {
     try{
