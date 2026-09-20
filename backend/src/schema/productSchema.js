@@ -19,7 +19,6 @@ const productSchema = new Schema({
     price:{
         type:Number,
         required:true,
-        trim:true,
         min:0
     },
     category:{
@@ -29,6 +28,8 @@ const productSchema = new Schema({
     },
     quantity:{
         type:Number,
+        min:0,
+        required:true
     },
     sold:{
         type:Number,

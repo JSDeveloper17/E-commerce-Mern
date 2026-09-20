@@ -8,7 +8,7 @@ const { StatusCodes } = require('http-status-codes');
 const productValidator = require('../validators/productValidator');
 const productRouter = express.Router()
 
-productRouter.post("/products",[authenticateToken, isAdmin,productValidator,formidable()], (req,res)=>{
+productRouter.post("/products",[authenticateToken, isAdmin,formidable(),productValidator], (req,res)=>{
     const result = validationResult(req)
     if(result.isEmpty()){
         return createProducts(req,res)
