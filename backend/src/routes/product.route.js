@@ -8,6 +8,9 @@ const { StatusCodes } = require('http-status-codes');
 const productValidator = require('../validators/productValidator');
 const getAllProduct = require('../controller/products/getAllProduct');
 const productDetail = require('../controller/products/productDetail');
+const getproductImage = require('../controller/products/imageProduct');
+const deleteProducts = require('../controller/products/deleteProduct');
+const updateProduct = require('../controller/products/updateProduct');
 const productRouter = express.Router()
 
 productRouter.post("/products",[authenticateToken, isAdmin,formidable(),productValidator], (req,res)=>{
@@ -20,5 +23,15 @@ productRouter.post("/products",[authenticateToken, isAdmin,formidable(),productV
 })
 productRouter.get("/products", getAllProduct)
 productRouter.get("/products/:slug", productDetail)
+productRouter.get('/products/image/:id', getproductImage)
+productRouter.delete("/products/:id",[authenticateToken,isAdmin], deleteProducts)
+productRouter.put("/products/:id",[authenticateToken,isAdmin,formidable(),productValidator], (req,res)=>{
+    const result = validationResult(req)
+    if(result.isEmpty()){
+        return updateProduct(req,res)
+    }else{
+        res.status(StatusCodes.BAD_REQUEST).json(result.array())
+    }
+})
 
 module.exports = productRouter
