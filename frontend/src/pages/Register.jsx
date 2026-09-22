@@ -86,9 +86,12 @@ function Register() {
     try{
       setIsLoading(true)
       const response = await api.post("/register", newUser)
+      console.log('Response : ', response)
       if(!response.ok){
         throw new Error("failed to register user")
       }
+      const data = await response.json()
+      console.log("Data : ",data)
     }
     catch(err){}
   }

@@ -3,7 +3,7 @@ const app = express()
 
 const dotenv = require("dotenv")
 dotenv.config()
-
+const cors = require("cors");
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const morgan = require("morgan")
@@ -12,6 +12,12 @@ const categoryRouter = require("./routes/category.route");
 const productRouter = require("./routes/product.route");
 //middleware
 
+//!cors
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+    methods:["GET","POST","PUT","DELETE"],
+    allowedHeaders:["Content-Type", "Authorization"]
+}))
 app.use(morgan("dev"))
 app.use(express.json())
 

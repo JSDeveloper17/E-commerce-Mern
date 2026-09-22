@@ -28,6 +28,7 @@ async function userRegister(req,res){
         const token = generateToken(newUser)
 
         return res.status(StatusCodes.CREATED).json({
+            message:"User registered successfully",
             token: token,
             email:newUser.email,
             name : newUser.name 

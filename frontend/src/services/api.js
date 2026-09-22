@@ -5,7 +5,6 @@ import axios from "axios"
  * All API requests in the application can use
  * this instance.
  */
-console.log(process.env.REACT_APP_SERVER_API)
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
