@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Register.css'
+import { api } from '../services/api';
 
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -70,15 +71,26 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
-  function handleRegister(e){
+  async function handleRegister(e){
     e.preventDefault();
+    if(!name.trim() && !email.trim() && !password.trim()) return;
+
     const newUser = {
       name:name,
       email:email,
       password:password
     }
     console.log(newUser)
+    try{
+      setIsLoading(true)
+      const response = await api.post("/register", newUser)
+      if(!response.ok){
+        throw new Error("failed to register user")
+      }
+    }
+    catch(err){}
   }
 
   return (
@@ -118,7 +130,7 @@ function Register() {
         <section className="auth__form-side">
           <div className="auth__card">
             <div className="auth__card-head">
-              <h2>Create Account </h2>
+              <h2 style={{textAlign:"center"}}>Create Your Account </h2>
               <p>Fill in your details to get started — it takes less than a minute.</p>
             </div>
 
@@ -152,8 +164,8 @@ function Register() {
                 <span className="auth__hint">🔒 Must be at least 6 characters</span>
               </div>
 
-              <button type="submit" className="auth__submit">
-                Create My Account
+              <button type="submit" className="auth__submit" disabled={isLoading}>
+                {isLoading ? "Creating your Account":"Create My Account"}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />

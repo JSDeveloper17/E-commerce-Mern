@@ -15,9 +15,9 @@ const productRouter = require("./routes/product.route");
 app.use(morgan("dev"))
 app.use(express.json())
 
-app.use("/", authRouter)
-app.use("/", categoryRouter)
-app.use("/", productRouter)
+app.use("/api", authRouter)
+app.use("/api", categoryRouter)
+app.use("/api", productRouter)
 
 async function Bootstarp() {
     try{
