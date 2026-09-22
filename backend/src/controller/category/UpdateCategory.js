@@ -16,7 +16,7 @@ async function UpdateCategory(req,res) {
         })
 
         if(!findCategory){
-            res.status(StatusCodes.NOT_FOUND).json({
+            return res.status(StatusCodes.NOT_FOUND).json({
                 message:"Category not found"
             })
         }

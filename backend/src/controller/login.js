@@ -14,7 +14,7 @@ async function userLogin(req,res) {
         //? compare hash
         const result = await bcrypt.compare(req.body.password, user.password);
         if(!result){
-            res.status(StatusCodes.BAD_REQUEST).json({
+            return res.status(StatusCodes.BAD_REQUEST).json({
                 message:"Credential not matched"
             })
         }
@@ -29,7 +29,7 @@ async function userLogin(req,res) {
         })
     }catch(error){
         console.log(error);
-        res.status(StatusCodes.GATEWAY_TIMEOUT).json({
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message:"Unable to process your requset, try after sometime"
         })
     }

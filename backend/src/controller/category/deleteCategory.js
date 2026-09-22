@@ -9,7 +9,7 @@ async function deleteCategory(req,res) {
     try{
         const deleteCategory = await Category.findByIdAndDelete(req.params.id)
         if(!deleteCategory){
-            res.status(StatusCodes.NOT_FOUND).json({
+            return res.status(StatusCodes.NOT_FOUND).json({
                 message:"Category not found"
             })
         }

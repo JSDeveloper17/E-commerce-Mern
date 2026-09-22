@@ -13,7 +13,7 @@ async function userRegister(req,res){
     try{
         const existingUser = await getUserByEmail(req.body.email);
         if(existingUser){
-            res.status(StatusCodes.CONFLICT).json({
+            return res.status(StatusCodes.CONFLICT).json({
                 message:"User already exist with given email address"
             })
         }
@@ -36,7 +36,7 @@ async function userRegister(req,res){
     }
     catch(error){
         console.log(error);
-        res.status(StatusCodes.GATEWAY_TIMEOUT).json({
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message:"unable to process your request, plz try after sometime"
         })
     }
