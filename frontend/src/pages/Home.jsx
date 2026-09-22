@@ -92,8 +92,9 @@ function Home() {
             }))
           )
         }
-      } catch {
+      } catch(err) {
         // Backend offline or CORS not enabled yet — curated demo products are shown
+        console.log("api not added till now", err.message)
       }
     }
     loadProducts()
