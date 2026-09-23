@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './Register.css'
+import './Auth.css'
 import { api } from '../services/api';
 import { toast } from 'react-toastify';
 

@@ -431,3 +431,64 @@
   }
 }
 
+
+/* ================= LOGIN EXTRAS ================= */
+.auth__eye {
+  position: absolute;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: var(--gray-light);
+  transition: var(--transition);
+}
+
+.auth__eye svg {
+  width: 18px;
+  height: 18px;
+}
+
+.auth__eye:hover {
+  color: var(--primary);
+  background: rgba(108, 92, 231, 0.08);
+}
+
+.auth__input-wrap input[type="password"],
+.auth__input-wrap:has(.auth__eye) input {
+  padding-right: 52px;
+}
+
+.auth__options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+}
+
+.auth__remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+.auth__remember input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.auth__forgot {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.auth__forgot:hover {
+  text-decoration: underline;
+}
+
