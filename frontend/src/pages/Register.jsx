@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Register.css'
 import { api } from '../services/api';
+import { toast } from 'react-toastify';
 
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -75,7 +76,9 @@ function Register() {
 
   async function handleRegister(e){
     e.preventDefault();
-    if(!name.trim() && !email.trim() && !password.trim()) return;
+    if(!name.trim() || !email.trim() || !password.trim()){
+      toast.warning("Please fill in all details")
+    }
 
     const newUser = {
       name:name,
@@ -87,13 +90,21 @@ function Register() {
       setIsLoading(true)
       const response = await api.post("/register", newUser)
       console.log('Response : ', response)
-      if(!response.ok){
-        throw new Error("failed to register user")
-      }
-      const data = await response.json()
-      console.log("Data : ",data)
+      
+      console.log("Response Data : ",response.data)
+      toast.success(response.data.message || "Registration Failed")
+
     }
-    catch(err){}
+    catch(err){
+      console.log("Registration error : ", err);
+      if(err.response){
+        console.log("Server Error",err.response.data)
+        toast.error(err.response.data.message)
+      }
+    }
+    finally{
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -168,7 +179,7 @@ function Register() {
               </div>
 
               <button type="submit" className="auth__submit" disabled={isLoading}>
-                {isLoading ? "Creating your Account":"Create My Account"}
+                {isLoading ? "Creating your Account...":" Register"}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
