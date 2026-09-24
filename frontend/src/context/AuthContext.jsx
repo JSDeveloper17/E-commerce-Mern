@@ -22,19 +22,44 @@ export const AuthProvider = ({children})=>{
 
         setToken(data.token)
         localStorage.setItem("token",data.token);
-        setUser({
+
+        const userData = {
             name:data.name,
             email:data.email,
             role:data.role,
             id:data.id
-        })
+        }
+        setUser(userData)
 
-        localStorage.setItem("user",JSON.stringify(user))
+        localStorage.setItem("user",JSON.stringify(userData))
         return data
     }
 
+    const register = async (userData)=>{
+        try{
+            const response = await api.post("/register", userData)
+
+            console.log(response.data)
+            const data = response.data;
+            const newUser = {
+                name: data.name,
+                email:data.email,
+                role:data.role
+            }
+            
+            setToken(data.token);
+            localStorage.setItem("token", token)
+
+            setUser(newUser)
+            localStorage.setItem("user", JSON.stringify(user))
+
+            return data;
+        }
+        catch(err){}
+    }
     const logout = async ()=>{
         localStorage.removeItem("token");
+        localStorage.removeItem("user")
         setToken(null)
         setUser(null)
     }
@@ -43,13 +68,17 @@ export const AuthProvider = ({children})=>{
         const restoreAuth = async ()=>{
             try{
                  const restoreToken = localStorage.getItem("token");
+                 const restoredUser = JSON.parse(localStorage.getItem("user"))
 
-                 if(!restoreToken)return;
+                 if(!restoreToken || !restoredUser)return;
                  setToken(restoreToken)
+                 setUser(restoredUser)
+
             }
             catch(err){
                 console.log("Failed to restore Authentication")
                 localStorage.removeItem('token')
+                localStorage.removeItem("user")
                 setToken(null)
                 setUser(null)
             }
@@ -60,7 +89,7 @@ export const AuthProvider = ({children})=>{
         restoreAuth()
     },[])
 
-    const value = { user, token, login, logout, isAuthenticated, isLoading}
+    const value = { user, token, login, logout, isAuthenticated, isLoading, register}
 
     return (
     <AuthContext.Provider value={value}>

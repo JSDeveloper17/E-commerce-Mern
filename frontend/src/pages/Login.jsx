@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 import { api } from '../services/api'
 import { toast } from 'react-toastify'
+import { useAuth } from '../context/AuthContext';
 
 const MailIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -73,35 +74,25 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
+  const {login} = useAuth()
+
   async function handleLogin(e){
     e.preventDefault();
     if(!email.trim() || !password.trim()){
       toast.warning("Please fill in all details")
       return
     }
-
-    const loginUser = {
+    const loginUser ={
       email:email,
       password:password
     }
-    console.log(loginUser)
     try{
       setIsLoading(true)
-      const response = await api.post("/login", loginUser)
+      const response = await login(loginUser)
       console.log('Response : ', response)
-      console.log("Response Data : ", response.data)
+      console.log("Login successFull")
 
-      //? save token + user for authenticated requests
-      // localStorage.setItem("token", response.data.token)
-      // localStorage.setItem("user", JSON.stringify({
-      //   id: response.data.id,
-      //   name: response.data.name,
-      //   email: response.data.email,
-      //   role: response.data.role,
-      //   address: response.data.address
-      // }))
-
-      toast.success(`Welcome back, ${response.data.name}! 👋`)
+      toast.success(`Welcome back, ${response.name}! 👋`)
       navigate("/")
     }
     catch(err){
