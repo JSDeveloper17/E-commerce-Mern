@@ -48,10 +48,10 @@ export const AuthProvider = ({children})=>{
             }
             
             setToken(data.token);
-            localStorage.setItem("token", token)
+            localStorage.setItem("token", data.token)
 
             setUser(newUser)
-            localStorage.setItem("user", JSON.stringify(user))
+            localStorage.setItem("user", JSON.stringify(newUser))
 
             return data;
         }
