@@ -77,7 +77,8 @@ function Register() {
   async function handleRegister(e){
     e.preventDefault();
     if(!name.trim() || !email.trim() || !password.trim()){
-      toast.warning("Please fill in all details")
+      toast.warning("Please fill in all details");
+      return;
     }
 
     const newUser = {

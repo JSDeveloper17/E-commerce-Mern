@@ -11,20 +11,26 @@ export const AuthProvider = ({children})=>{
     const [token, setToken] = useState(null)
 
     //todo- isLoading  Used while restoring authentication when the application starts.
-    const [isLoading, setLoading] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
     const isAuthenticated = !!token; //!We don't currently have an authenticated user.
 
     const login = async (credential)=>{
         const response = await api.post("/login", credential);
 
-        const {token, ...userData} = response.data;
+        const data = response.data;
 
-        setToken(token)
-        setUser(userData)
-        localStorage.setItem("token",token);
+        setToken(data.token)
+        localStorage.setItem("token",data.token);
+        setUser({
+            name:data.name,
+            email:data.email,
+            role:data.role,
+            id:data.id
+        })
 
-        return response.data;
+        localStorage.setItem("user",JSON.stringify(user))
+        return data
     }
 
     const logout = async ()=>{
