@@ -100,6 +100,8 @@ function Register() {
       if(err.response){
         console.log("Server Error",err.response.data)
         toast.error(err.response.data.message)
+      }else{
+        toast.error("Can not react the server, please try again")
       }
     }
     finally{
