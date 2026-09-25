@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 import { api } from '../services/api';
 import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
 
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -74,6 +75,9 @@ function Register() {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
+  const navigate = useNavigate()
+  const {register} = useAuth()
+
   async function handleRegister(e){
     e.preventDefault();
     if(!name.trim() || !email.trim() || !password.trim()){
@@ -89,20 +93,20 @@ function Register() {
     console.log(newUser)
     try{
       setIsLoading(true)
-      const response = await api.post("/register", newUser)
-      console.log('Response : ', response)
+      const data = await register(newUser)
       
-      console.log("Response Data : ",response.data)
-      toast.success(response.data.message || "Registration Failed")
+      console.log("Response Data : ",data)
+      toast.success(data.message || "Registration Successfull")
 
+      navigate("/")
     }
     catch(err){
       console.log("Registration error : ", err);
-      if(err.response){
+      if(err.data){
         console.log("Server Error",err.response.data)
-        toast.error(err.response.data.message)
+        toast.error(err.data.message)
       }else{
-        toast.error("Can not react the server, please try again")
+        toast.error("Can not reached the server, please try again")
       }
     }
     finally{

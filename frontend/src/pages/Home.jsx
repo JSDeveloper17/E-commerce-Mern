@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Home.css'
 import heroImage from '../assets/hero.png'
+import { useAuth } from '../context/AuthContext';
 
 const API_URL = 'http://localhost:4000'
 
@@ -77,6 +78,8 @@ function Home() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 
+  const {user} = useAuth()
+
   useEffect(() => {
     let cancelled = false
     async function loadProducts() {
@@ -123,6 +126,7 @@ function Home() {
               Discover Tech Gear That <span className="hero__title-gradient">Powers Your Passion</span>
             </h1>
             <p className="hero__subtitle">
+              {user && `para - ${user.name} - ${user.email}`}
               Shop the latest courses, developer gear and digital tools — curated for builders,
               creators and lifelong learners. Quality guaranteed, prices you'll love.
             </p>

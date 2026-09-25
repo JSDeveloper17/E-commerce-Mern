@@ -36,7 +36,6 @@ export const AuthProvider = ({children})=>{
     }
 
     const register = async (userData)=>{
-        try{
             const response = await api.post("/register", userData)
 
             console.log(response.data)
@@ -55,8 +54,8 @@ export const AuthProvider = ({children})=>{
 
             return data;
         }
-        catch(err){}
-    }
+    
+
     const logout = async ()=>{
         localStorage.removeItem("token");
         localStorage.removeItem("user")

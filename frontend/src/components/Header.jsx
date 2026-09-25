@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import './Header.css'
+import { useAuth } from '../context/AuthContext';
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -60,6 +61,14 @@ function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
 
+  const {isAuthenticated, logout} = useAuth()
+
+    const handleLogout = async () => {
+      await logout()
+      setMobileOpen(false)
+      navigate('/login')
+    }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
     window.addEventListener('scroll', onScroll)
@@ -115,8 +124,14 @@ function Header() {
             <UserIcon />
           </Link>
           <div className="header__auth">
-            <Link to="/login" className="header__btn header__btn--ghost">Login</Link>
-            <Link to="/register" className="header__btn header__btn--solid">Sign Up</Link>
+              {isAuthenticated ? (
+                <button onClick={handleLogout} className="header__btn header__btn--solid">Logout</button>
+              ) : (
+                <>
+                  <Link to="/login" className="header__btn header__btn--ghost">Login</Link>
+                  <Link to="/register" className="header__btn header__btn--solid">Sign Up</Link>
+                </>
+              )}
           </div>
           <button
             className="header__hamburger"
@@ -146,9 +161,14 @@ function Header() {
             </NavLink>
           ))}
           <div className="header__nav-auth">
+              {isAuthenticated ? (
+                <button onClick={handleLogout} className="header__btn header__btn--solid">Logout</button>
+            ) :(<>
             <NavLink to="/login" className="header__btn header__btn--ghost" onClick={() => setMobileOpen(false)}>Login</NavLink>
             <NavLink to="/register" className="header__btn header__btn--solid" onClick={() => setMobileOpen(false)}>Sign Up</NavLink>
-          </div>
+            </>
+            )
+          }  </div>
         </div>
       </nav>
     </header>
