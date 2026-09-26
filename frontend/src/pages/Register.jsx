@@ -98,7 +98,7 @@ function Register() {
       console.log("Response Data : ",data)
       toast.success(data.message || "Registration Successfull")
 
-      navigate("/")
+      navigate("/dashboard")
     }
     catch(err){
       console.log("Registration error : ", err);

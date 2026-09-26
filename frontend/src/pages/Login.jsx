@@ -93,7 +93,7 @@ function Login() {
       console.log("Login successFull")
 
       toast.success(`Welcome back, ${response.name}! 👋`)
-      navigate("/")
+      navigate("/dashboard")
     }
     catch(err){
       console.log("Login error : ", err);

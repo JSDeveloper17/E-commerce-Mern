@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Dashboard from '../pages/dashboard/Dashboard';
+import ProtectedRoutes from '../components/ProtectedRoutes';
 
 function AllRoutes() {
   return (
@@ -10,6 +12,11 @@ function AllRoutes() {
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
+
+      <Route element={<ProtectedRoutes/>} >
+         <Route path="/dashboard" element={<Dashboard/>}/>
+      </Route>
+      
     </Routes>
   )
 }
