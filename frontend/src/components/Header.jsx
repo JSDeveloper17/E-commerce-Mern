@@ -7,9 +7,10 @@ const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/shop', label: 'Shop' },
   { to: '/categories', label: 'Categories' },
-  { to: '/deals', label: 'Deals' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
+  { to: '/login', label: 'Login' },
+  { to: '/dashboard', label: 'Dashboard' },
 ]
 
 const SearchIcon = () => (

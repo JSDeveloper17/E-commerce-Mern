@@ -14,3 +14,21 @@ export const api = axios.create({
     }
 })
 
+/*
+ * REQUEST INTERCEPTOR
+ * Runs before every request made through `api`.
+ */
+
+api.interceptors.request.use( 
+     //! Register a function that Axios should execute before sending a request.
+    (config)=>{    //config contains the configuration for the current request.
+        const token = localStorage.getItem("token")
+        if(token){
+            config.headers.Authorization = `Bearer ${token}`
+        }
+        return config  //"I'm finished modifying the request. Continue with it."
+    },
+    (error) =>{
+        return Promise.reject(error)
+    }
+)
