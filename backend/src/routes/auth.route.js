@@ -30,5 +30,8 @@ authRouter.post("/login", loginValidator, (req, res)=>{
 })
 
 authRouter.get("/check-auth", authenticateToken,  checkAuth)
+authRouter.get("/check-admin", authenticateToken, isAdmin, (req,res)=>{
+    res.json({ok:true})
+})
 
 module.exports = authRouter

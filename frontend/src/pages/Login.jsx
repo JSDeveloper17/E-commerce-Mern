@@ -75,7 +75,7 @@ function Login() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const {login} = useAuth()
+  const {login, user} = useAuth()
 
   async function handleLogin(e){
     e.preventDefault();
@@ -94,7 +94,7 @@ function Login() {
       console.log("Login successFull")
 
       toast.success(`Welcome back, ${response.name}! 👋`)
-      navigate(location.state  ||"/dashboard")
+      navigate(location.state  ||`/dashboard/${response.role !==0 ? "admin":"user"}`)
     }
     catch(err){
       console.log("Login error : ", err);
