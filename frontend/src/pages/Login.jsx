@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Auth.css'
 import { api } from '../services/api'
 import { toast } from 'react-toastify'
@@ -73,6 +73,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
 
   const {login} = useAuth()
 
@@ -93,7 +94,7 @@ function Login() {
       console.log("Login successFull")
 
       toast.success(`Welcome back, ${response.name}! 👋`)
-      navigate("/dashboard")
+      navigate(location.state  ||"/dashboard")
     }
     catch(err){
       console.log("Login error : ", err);

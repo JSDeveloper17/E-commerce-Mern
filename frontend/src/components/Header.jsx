@@ -11,6 +11,7 @@ const navLinks = [
   { to: '/contact', label: 'Contact' },
   { to: '/login', label: 'Login' },
   { to: '/dashboard', label: 'Dashboard' },
+  { to: '/secret', label: 'secret' },
 ]
 
 const SearchIcon = () => (

@@ -1,6 +1,6 @@
 
 import { useAuth } from '../context/AuthContext';
-import { Navigate,Outlet } from 'react-router-dom';
+import { Navigate,Outlet, useLocation } from 'react-router-dom';
 import Loading from './Loading';
 import { api } from '../services/api';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,7 @@ function ProtectedRoutes() {
     const [isVerified, setIsVerified] = useState(false)
     const [isChecking, setIsChecking] = useState(true)
     const { isLoading, token} = useAuth()
+    const location = useLocation()
 
     useEffect(() => {
         let cancelled = false
@@ -42,7 +43,8 @@ function ProtectedRoutes() {
     if (isLoading || isChecking) return <Loading />
 
     return token && isVerified ? 
-      <Outlet /> : <Navigate to="/login" replace />
+            <Outlet /> : <Navigate to="/login" 
+             state={`${location.pathname}${location.search}${location.hash}`} replace />
 }
 
 export default ProtectedRoutes

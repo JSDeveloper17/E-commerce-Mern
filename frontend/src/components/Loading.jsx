@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Loading() {
     const [count, setCount] = useState(3)
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
     useEffect(()=>{
         const timer = setInterval(()=>(
             setCount(prevCount => --prevCount)
         ), 1000);
 
         if(count === 1){
-            navigate("/login")
+            navigate("/login",{
+                state: location.pathname
+            })
         }
 
         return ()=>{
