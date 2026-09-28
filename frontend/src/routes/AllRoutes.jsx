@@ -9,9 +9,12 @@ import SecretPage from '../components/SecretPage';
 import PageNotFound from '../pages/PageNotFound';
 import AdminDashboard from '../pages/dashboard/AdminDashboard';
 import AdminProtect from './AdminProtect';
+import Header from '../components/Header';
 
 function AllRoutes() {
   return (
+    <>
+      <Header/>
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
@@ -29,6 +32,7 @@ function AllRoutes() {
       <Route path="*" element={<PageNotFound/>}/>
 
     </Routes>
+    </>
   )
 }
 

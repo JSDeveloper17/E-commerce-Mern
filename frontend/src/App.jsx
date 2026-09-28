@@ -11,7 +11,7 @@ function App() {
   }
   return (
     <>
-       <Header/>
+       {/* <Header/> */}
        <AllRoutes/>
        <ToastContainer position="top-right" autoClose={3000} newestOnTop closeOnClick/>
     </>

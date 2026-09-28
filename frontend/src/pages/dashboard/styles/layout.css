@@ -1,0 +1,51 @@
+/* =========================================================
+   ShopVerse Dashboard — layout shell
+   Tokens come from src/index.css
+   ========================================================= */
+
+.dash {
+  --dash-sidebar: 264px;
+  display: grid;
+  grid-template-columns: var(--dash-sidebar) 1fr;
+  min-height: 100vh;
+  background:
+    radial-gradient(700px 400px at 100% 0%, rgba(108, 92, 231, 0.06), transparent 60%),
+    var(--bg);
+  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dash--collapsed {
+  --dash-sidebar: 84px;
+}
+
+.dash__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dash__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 26px 28px 40px;
+}
+
+.dash__overlay {
+  display: none;
+}
+
+.dash__footer {
+  padding: 16px 28px 26px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--gray-light);
+}
+
+/* every dashboard panel is a vertical stack of cards */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}

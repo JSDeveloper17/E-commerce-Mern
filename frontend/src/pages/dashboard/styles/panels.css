@@ -1,0 +1,529 @@
+/* ================= CUSTOMER PANELS ================= */
+
+/* active delivery tracker */
+.delivery {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(0, 206, 201, 0.08));
+  border: 1px solid rgba(108, 92, 231, 0.16);
+}
+
+.delivery__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.delivery__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.delivery__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.delivery__body strong {
+  font-size: 0.92rem;
+}
+
+.delivery__body p {
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+.delivery__track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.delivery__bar {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.delivery__eta {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* compact address block */
+.address-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+
+.address-mini__tag {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(108, 92, 231, 0.12);
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.address-mini strong {
+  color: var(--dark);
+  font-size: 0.88rem;
+}
+
+/* compact wishlist rows */
+.wish-mini,
+.notice {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wish-mini__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  transition: var(--transition);
+}
+
+.wish-mini__item:hover {
+  background: rgba(108, 92, 231, 0.07);
+  transform: translateX(4px);
+}
+
+.wish-mini__item img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.wish-mini__item > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.wish-mini__item strong {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.wish-mini__rating,
+.wish-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #d97706;
+}
+
+.wish-mini__rating svg,
+.wish-card__rating svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.wish-mini__price {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* notification rows */
+.notice__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.notice__item.is-unread {
+  background: rgba(108, 92, 231, 0.08);
+  border-left: 3px solid var(--primary);
+}
+
+.notice__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gray-light);
+}
+
+.notice__item.is-unread .notice__dot {
+  background: var(--primary);
+}
+
+.notice__item strong {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.notice__item span {
+  font-size: 0.72rem;
+  color: var(--gray-light);
+}
+
+/* ================= WISHLIST CARDS ================= */
+.wish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.wish-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.wish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.wish-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.wish-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.wish-card:hover .wish-card__media img {
+  transform: scale(1.06);
+}
+
+.wish-card__tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--white);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.wish-card__remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--danger);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.wish-card__remove svg {
+  width: 15px;
+  height: 15px;
+}
+
+.wish-card__remove:hover {
+  background: var(--danger);
+  color: var(--white);
+}
+
+.wish-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.wish-card__body h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.wish-card__prices {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.wish-card__prices strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.wish-card__prices s {
+  font-size: 0.8rem;
+  color: var(--gray-light);
+}
+
+.wish-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--gray-light);
+}
+
+.wish-note svg {
+  width: 15px;
+  height: 15px;
+  color: var(--primary);
+}
+
+/* ================= ADDRESS CARDS ================= */
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.address-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.84rem;
+  color: var(--gray);
+  transition: var(--transition);
+}
+
+.address-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.address-card--default {
+  border-color: rgba(108, 92, 231, 0.4);
+  background: linear-gradient(160deg, rgba(108, 92, 231, 0.05), var(--white));
+}
+
+.address-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.address-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.address-card__label svg {
+  width: 15px;
+  height: 15px;
+  color: var(--primary);
+}
+
+.address-card strong {
+  color: var(--dark);
+  font-size: 0.9rem;
+}
+
+.address-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.address-add {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 190px;
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--border);
+  color: var(--gray-light);
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.address-add svg {
+  width: 26px;
+  height: 26px;
+}
+
+.address-add:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(108, 92, 231, 0.05);
+}
+
+/* ================= FORMS + SWITCHES ================= */
+.dash-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dash-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.dash-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dash-field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark-soft);
+}
+
+.dash-field input,
+.dash-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  background: var(--bg);
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--dark);
+  outline: none;
+  resize: vertical;
+  transition: var(--transition);
+}
+
+.dash-field input:focus,
+.dash-field textarea:focus {
+  border-color: var(--primary);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12);
+}
+
+.dash-form .dash-btn {
+  align-self: flex-start;
+}
+
+.toggle-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.toggle-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.toggle-list__item strong {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.toggle-list__item p {
+  font-size: 0.75rem;
+  color: var(--gray-light);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--border);
+  transition: var(--transition);
+}
+
+.switch span::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.switch input:checked + span {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.switch input:checked + span::before {
+  transform: translateX(20px);
+}
+
