@@ -6,6 +6,7 @@ import Register from '../pages/Register';
 import Dashboard from '../pages/dashboard/Dashboard';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import SecretPage from '../components/SecretPage';
+import PageNotFound from '../pages/PageNotFound';
 
 function AllRoutes() {
   return (
@@ -18,6 +19,8 @@ function AllRoutes() {
          <Route path="/dashboard" element={<Dashboard/>}/>
          <Route path="/secret" element={<SecretPage/>}/>
       </Route>
+
+      <Route path="*" element={<PageNotFound/>}/>
 
     </Routes>
   )
